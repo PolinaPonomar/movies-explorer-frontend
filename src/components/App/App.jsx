@@ -12,11 +12,23 @@ import Footer from '../Footer/Footer.jsx';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
+  const [isNavMenuOpen,setIsNavMenuOpen] = useState(false);
 
-  // вернуться к css page
+  const handleMenuClick = () => {
+    setIsNavMenuOpen(true);
+  };
+  const closeNavMenu = () => {
+    setIsNavMenuOpen(false);
+  };
+
   return (
     <div className="page"> 
-        <Header loggedIn={loggedIn}/>
+        <Header
+          loggedIn={loggedIn}
+          onMenuClick={handleMenuClick}
+          isNavMenuOpen={isNavMenuOpen}
+          onCloseNavMenu={closeNavMenu}
+        />
         <Switch>
             <Route exact path="/">
               <Main /> 

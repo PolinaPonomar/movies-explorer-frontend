@@ -1,6 +1,7 @@
 import './Navigation.css';
 import { Link } from 'react-router-dom';
 import accountIcon from '../../images/account-icon.svg';
+import NavMenu from '../NavMenu/NavMenu';
 
 function Navigation (props) {
     return (
@@ -16,35 +17,12 @@ function Navigation (props) {
                             <Link to="/saved-movies" className="navigation__link">Сохранённые фильмы</Link>
                         </li>
                     </ul>
-                    <Link to="/profile" className="navigation__account-link">
-                        <img className="navigation__account-icon" src={accountIcon} alt="Иконка кнопки аккаунт"/>
+                    <Link to="/profile" className="account-button">
+                        <img className="account-button__icon" src={accountIcon} alt="Иконка кнопки аккаунт"/>
                         Аккаунт
                     </Link >
-                    <button className="navigation__hamburger-menu"></button>
-                    {/* <button className="navigation__hamburger-menu navigation__hamburger-menu_invisible"></button> */}
-
-                    <div className="navigation__menu">
-                    {/* <div className="navigation__menu navigation__menu_opened"> */}
-                        <div className="navigation__menu-container">
-                            <button className="navigation__close-button"></button>
-                            <ul className="navigation__menu-links">
-                                <li className="navigation__menu-links-item">
-                                    <Link to="/" className="navigation__menu-link">Главная</Link>
-                                </li>
-                                <li className="navigation__menu-links-item">
-                                    <Link to="/movies" className="navigation__menu-link">Фильмы</Link>
-                                </li>
-                                <li className="navigation__menu-links-item">
-                                    <Link to="/saved-movies" className="navigation__menu-link">Сохранённые фильмы</Link>
-                                </li>
-                            </ul>
-                            <Link to="/profile" className="navigation__account-link navigation__account-link_type_menu">
-                                <img className="navigation__account-icon" src={accountIcon} alt="Иконка кнопки аккаунт"/>
-                                Аккаунт
-                            </Link >
-                        </div>
-                    </div>
-
+                    <button className="navigation__hamburger-menu" onClick={props.onMenuClick}></button>
+                    <NavMenu isOpen={props.isNavMenuOpen} onClose={props.onCloseNavMenu}/>
                 </nav>
                 
             ) : (

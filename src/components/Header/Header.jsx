@@ -12,13 +12,25 @@ function Header (props) {
             (   <div className="header-wrapper">
                     <header className="header header_background_pink">
                         <Link to="/"><img className="header__logo" src={logo} alt="Логотип сайта"/></Link>
-                        <Navigation landing={landing} loggedIn={props.loggedIn}/>
+                        <Navigation
+                            landing={landing}
+                            loggedIn={props.loggedIn}
+                            onMenuClick={props.onMenuClick}
+                            isNavMenuOpen={props.isNavMenuOpen}
+                            onCloseNavMenu={props.onCloseNavMenu}
+                        />
                     </header>
                 </div>
             ) : (
                 <header className="header">
                     <Link to="/"><img className="header__logo" src={logo} alt="Логотип сайта"/></Link>
-                    <Navigation landing={landing} loggedIn={props.loggedIn}/>
+                    <Navigation
+                            landing={landing}
+                            loggedIn={props.loggedIn}
+                            onMenuClick={props.onMenuClick}
+                            isNavMenuOpen={props.isNavMenuOpen}
+                            onCloseNavMenu={props.onCloseNavMenu}
+                    />
                 </header>
             )
         }
