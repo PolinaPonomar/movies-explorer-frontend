@@ -1,9 +1,8 @@
-.header-wrapper {
+.color-wrapper {
     width: 100%;
     background-color: #F3C1F8;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
 .header {

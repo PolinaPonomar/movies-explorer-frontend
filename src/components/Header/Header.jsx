@@ -9,7 +9,7 @@ function Header (props) {
     return (
         <>
         { landing ?
-            (   <div className="header-wrapper">
+            (   <div className="color-wrapper">
                     <header className="header header_background_pink">
                         <Link to="/"><img className="header__logo" src={logo} alt="Логотип сайта"/></Link>
                         <Navigation

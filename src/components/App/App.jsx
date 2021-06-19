@@ -11,7 +11,7 @@ import Register from '../Register/Register.jsx';
 import Footer from '../Footer/Footer.jsx';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isNavMenuOpen,setIsNavMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
