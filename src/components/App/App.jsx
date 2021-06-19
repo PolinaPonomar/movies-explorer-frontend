@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
+import './App.css';
 import Header from '../Header/Header.jsx';
 import Main from '../Main/Main.jsx';
 import Movies from '../Movies/Movies.jsx';
@@ -9,9 +11,12 @@ import Register from '../Register/Register.jsx';
 import Footer from '../Footer/Footer.jsx';
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(true);
+
+  // вернуться к css page
   return (
-    <>
-        <Header />
+    <div className="page"> 
+        <Header loggedIn={loggedIn}/>
         <Switch>
             <Route exact path="/">
               <Main /> 
@@ -33,7 +38,7 @@ function App() {
             </Route>
         </Switch>
         <Footer />
-    </>
+    </div>
   );
 }
 
