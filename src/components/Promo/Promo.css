@@ -1,4 +1,4 @@
-.color-wrapper {
+.pink-wrapper {
     width: 100%;
     background-color: #F3C1F8;
     display: flex;
@@ -6,7 +6,6 @@
 }
 
 .promo {
-    padding: 0;
     width: calc(100% - 2*(70px));
     max-width: 1280px;
     display: flex;

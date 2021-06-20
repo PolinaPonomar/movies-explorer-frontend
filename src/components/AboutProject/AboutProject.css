@@ -1,0 +1,163 @@
+.about-section {
+    padding: 110px 0 95px;
+    width: calc(100% - 2*(70px));
+    max-width: 1280px;
+}
+
+.section-title {
+    margin: 0;
+    padding: 0 0 23px;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 27px;
+    letter-spacing: -0.04em;
+    border-bottom: 1px solid #000000;
+}
+
+.table {
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+}
+
+.table_type_info {
+    margin: 70px 0 110px;
+}
+
+.table__cell {
+    margin-right: 40px;
+}
+
+.table__cell:last-of-type {
+    margin: 0;
+}
+
+.table__title {
+    margin: 0 0 26px;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.04em;
+}
+
+.table__text {
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 143%;
+}
+
+.table__cell-backend {
+    width: calc(100%/5);
+}
+
+.table__cell-frontend {
+    width: calc(4* 100%/5);
+}
+
+.table__time {
+    padding: 10px 0 10px;
+    margin-bottom: 14px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+
+}
+
+.table__time_type_backend {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.table__time_type_frontend {
+    background-color: #F2F2F2;
+    color: #000000;
+}
+
+.table__program-part {
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 121%;
+    text-align: center;
+    color: #A0A0A0;
+}
+
+
+@media screen and (max-width: 768px) {
+    .about-section  {
+        padding: 90px 0 73px;
+        width: calc(100% - 2*(50px));
+    }
+
+    .table_type_info {
+        margin: 70px 0 89px;
+    }
+
+    .table__text {
+        font-size: 12px;
+        line-height: 150%;
+    }
+
+    .table__cell-backend {
+        width: calc((140/(140 + 528))*100%);
+    }
+    
+    .table__cell-frontend {
+        width: calc((528/(140 + 528))*100%);
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .about-section {
+        padding: 70px 0 70px; 
+        width: calc(100% - 2*(18px));
+    }
+
+    .section-title {
+        padding: 0 0 28px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .table_type_info {
+        flex-direction: column;
+        margin: 60px 0 62px;
+    }
+
+    .table__cell {
+        margin: 0 0 56px;
+    }
+
+    .table__title {
+        margin: 0 0 16px;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .table__text {
+        font-size: 11px;
+        line-height: 145%;
+    }
+
+    .table__time {
+        padding: 11px 0 11px;
+        margin-bottom: 10px;
+        font-size: 11px;
+        line-height: 13px;
+    }
+
+    .table__cell-backend {
+        width: calc((100/(100 + 184))*100%);
+    }
+    
+    .table__cell-frontend {
+        width: calc((184/(100 + 184))*100%);
+    }
+
+    .table__program-part {
+        font-size: 11px;
+        line-height: 13px;
+    }
+}
