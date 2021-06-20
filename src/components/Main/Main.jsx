@@ -8,8 +8,8 @@ function Main() {
         <>
             <Promo/>
             <AboutProject/>
-            {/* <Techs/>
-            <AboutMe/> */}
+            <Techs/>
+            {/* <AboutMe/> */}
         </>
     );
 }
