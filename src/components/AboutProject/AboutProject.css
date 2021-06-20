@@ -109,7 +109,7 @@
     }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
     .about-section {
         padding: 70px 0 70px; 
         width: calc(100% - 2*(18px));
