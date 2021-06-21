@@ -49,22 +49,22 @@
     line-height: 157%;
 }
 
-.info-box__contacts {
+.contacts {
     margin: 0;
     padding: 0;
     display: flex;
     list-style-type: none;
 }
 
-.info-box__contacts-item {
+.contacts__item {
     margin-right: 20px;
 }
 
-.info-box__contacts-item:last-of-type {
+.contacts__item:last-of-type {
     margin-right: 0;
 }
 
-.info-box__contacts-link {
+.contacts__link {
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
@@ -72,7 +72,7 @@
     text-decoration: none;
 }
 
-.info-box__contacts-link:hover {
+.contacts__link:hover {
     opacity: 0.5;
     cursor: pointer;
 }
@@ -169,7 +169,7 @@
         line-height: 145%;
     }
 
-    .info-box__contacts-item {
+    .contacts__item {
         margin-right: 26px;
     }
 

@@ -15,12 +15,12 @@ function AboutMe() {
                     и дочь. Я люблю слушать музыку, а ещё увлекаюсь бегом. Недавно начал кодить. 
                     С 2015 года работал в компании «СКБ Контур». После того, как прошёл курс по веб-разработке, 
                     начал заниматься фриланс-заказами и ушёл с постоянной работы.</p>
-                    <ul className="info-box__contacts">
-                        <li className="info-box__contacts-item">
-                            <a href="https://www.facebook.com/" className="info-box__contacts-link" target="_blank" rel="noreferrer">Facebook</a>
+                    <ul className="contacts">
+                        <li className="contacts__item">
+                            <a href="https://www.facebook.com/" className="contacts__link" target="_blank" rel="noreferrer">Facebook</a>
                         </li>
-                        <li className="info-box__contacts-item">
-                            <a href="https://github.com/PolinaPonomar" className="info-box__contacts-link" target="_blank" rel="noreferrer">Github</a>
+                        <li className="contacts__item">
+                            <a href="https://github.com/PolinaPonomar" className="contacts__link" target="_blank" rel="noreferrer">Github</a>
                         </li>
                     </ul>
                 </div>

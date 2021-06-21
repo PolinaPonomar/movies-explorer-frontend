@@ -1,9 +1,8 @@
 import './Portfolio.css';
-import linkIcon from '../../images/link-icon.svg';
 
 function Portfolio() {
     return (
-        <div className="portfolio">
+        <nav className="portfolio">
             <p className="portfolio__title">Портфолио</p>
             <ul className="portfolio__list">
                 <li className="portfolio__list-item">
@@ -25,7 +24,7 @@ function Portfolio() {
                     </a>
                 </li>
             </ul>
-        </div>
+        </nav>
     );
 }
 
