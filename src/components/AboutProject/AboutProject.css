@@ -1,4 +1,4 @@
-.about-section {
+.about-project {
     padding: 110px 0 95px;
     width: calc(100% - 2*(70px));
     max-width: 1280px;
@@ -86,7 +86,7 @@
 
 
 @media screen and (max-width: 768px) {
-    .about-section  {
+    .about-project  {
         padding: 90px 0 73px;
         width: calc(100% - 2*(50px));
     }
@@ -110,7 +110,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .about-section {
+    .about-project {
         padding: 70px 0 55px; 
         width: calc(100% - 2*(18px));
     }

@@ -9,7 +9,7 @@ function Main() {
             <Promo/>
             <AboutProject/>
             <Techs/>
-            {/* <AboutMe/> */}
+            <AboutMe/>
         </>
     );
 }
