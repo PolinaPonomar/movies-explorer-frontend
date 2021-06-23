@@ -1,10 +1,13 @@
 import './MoviesCardList.css';
+import MoviesCard from '../MoviesCard/MoviesCard';
 
-function MoviesCardList() {
+function MoviesCardList(props) {
     return (
-        <>
-            <p>MoviesCardList</p>
-        </>
+        <section className="movies">
+            {
+                props.cards.map(item => (<MoviesCard card={item} key={item._id}/>))
+            }
+        </section>
     );
 }
 
