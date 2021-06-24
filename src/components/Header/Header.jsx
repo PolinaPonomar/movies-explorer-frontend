@@ -6,6 +6,9 @@ import Navigation from '../Navigation/Navigation'
 function Header (props) {
     const location = useLocation().pathname;
     const landing = (location === "/") ? true : false;
+    const loginPage = (location === "/signin") ? true : false;
+    const registerPage = (location === "/signup") ? true : false;
+
     return (
         <>
         { landing ?
@@ -22,16 +25,26 @@ function Header (props) {
                     </header>
                 </div>
             ) : (
-                <header className="header">
-                    <Link to="/"><img className="header__logo" src={logo} alt="Логотип сайта"/></Link>
-                    <Navigation
-                            landing={landing}
-                            loggedIn={props.loggedIn}
-                            onMenuClick={props.onMenuClick}
-                            isNavMenuOpen={props.isNavMenuOpen}
-                            onCloseNavMenu={props.onCloseNavMenu}
-                    />
-                </header>
+                <>
+                { (loginPage || registerPage) ?
+                    (   <header className="header header_page_authorization">
+                            <Link to="/"><img className="header__logo" src={logo} alt="Логотип сайта"/></Link>
+                        </header>
+
+                    ) : (
+                        <header className="header">
+                            <Link to="/"><img className="header__logo" src={logo} alt="Логотип сайта"/></Link>
+                            <Navigation
+                                    landing={landing}
+                                    loggedIn={props.loggedIn}
+                                    onMenuClick={props.onMenuClick}
+                                    isNavMenuOpen={props.isNavMenuOpen}
+                                    onCloseNavMenu={props.onCloseNavMenu}
+                            />
+                        </header>
+                    )
+                }
+                </>
             )
         }
         </>

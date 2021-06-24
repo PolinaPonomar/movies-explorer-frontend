@@ -15,6 +15,12 @@
     background-color:  #FFFFFF;
 }
 
+.header_page_authorization {
+    padding: 70px 0 0;
+    align-items: flex-end;
+    width: 396px;
+}
+
 .header_background_pink {
     background-color: #F3C1F8;
 }
@@ -28,10 +34,20 @@
     .header {
         width: calc(100% - 2*(30px));
     }
+
+    .header_page_authorization {
+        padding: 232px 0 0;
+        width: 396px;
+    }
 }
 
 @media screen and (max-width: 480px) {
     .header {
         width: calc(100% - 2*(14px));
+    }
+
+    .header_page_authorization {
+        padding: 56px 0 0;
+        width: auto;
     }
 }

@@ -29,10 +29,10 @@ function Navigation (props) {
                     <nav className="navigation">
                         <ul className="navigation__links">
                             <li className="navigation__links-item">
-                                <Link to="/profile" className="navigation__link navigation__link_type_not-authorized">Регистрация</Link>
+                                <Link to="/signup" className="navigation__link navigation__link_type_not-authorized">Регистрация</Link>
                             </li>
                         </ul>
-                        <Link to="/profile" className="navigation__enter-link">Войти</Link>
+                        <Link to="/signin" className="navigation__enter-link">Войти</Link>
                     </nav> 
             )
         }

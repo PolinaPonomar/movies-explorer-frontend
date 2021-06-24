@@ -5,8 +5,8 @@ function Profile () {
     return (
         <main className="content">
             <section className="profile">
+                <h1 className="profile__header">Привет, Виталий!</h1>
                 <form className="profile__form">
-                    <h2 className="profile__header">Привет, Виталий!</h2>
                     <div className="profile__form-group">
                         <input type="text" className="profile__input profile__input_type_name" id="name" defaultValue="Виталий"/>
                         <label htmlFor="name" className="profile__label profile__label_type_name">Имя</label>

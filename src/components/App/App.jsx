@@ -13,7 +13,7 @@ import {cards, savedCards } from '../../utils/utils';
 
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [isNavMenuOpen,setIsNavMenuOpen] = useState(false);
 
   const handleMenuClick = () => {
