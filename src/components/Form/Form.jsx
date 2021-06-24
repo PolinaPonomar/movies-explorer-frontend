@@ -10,12 +10,12 @@ function Form (props) {
                     <span id="name-input-error"className="form__input-error">Что-то пошло не так...</span>
                 </div>
                 <div className={`form__group ${props.inputEmail && 'form__group_visible'}`}>
-                    <input id="email-input" type="email" className="form__input" id="email" defaultValue="pochta@yandex.ru" required/>
+                    <input id="email-input" type="email" className="form__input" defaultValue="pochta@yandex.ru" required/>
                     <label htmlFor="email" className="form__label">E-mail</label>
                     <span id="email-input-error" className="form__input-error">Что-то пошло не так...</span>
                 </div>
                 <div className={`form__group ${props.inputPassword && 'form__group_visible'}`}>
-                    <input id="password-input" type="password" className="form__input form__input_type_error" id="email" defaultValue="12345" required/>
+                    <input id="password-input" type="password" className="form__input form__input_type_error" defaultValue="12345" required/>
                     <label htmlFor="email" className="form__label">Пароль</label>
                     <span id="password-input-error" className="form__input-error form__input-error_active">Что-то пошло не так...</span>
                 </div>
