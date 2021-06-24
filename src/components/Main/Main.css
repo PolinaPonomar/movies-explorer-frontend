@@ -1,11 +1,4 @@
-.content {
-    min-height: calc(100vh - 173px - 76px);
-    width: calc(100% - 2*(70px));
-    max-width: 1280px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* стиль .content - переиспользуемый, искать в App.css */
 
 .content_type_landing {
     width: 100%;
@@ -13,10 +6,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .content {
-        min-height: calc(100vh - 172px - 80px);
-        width: calc(100% - 2*(30px));
-    }
+    /* стиль .content - переиспользуемый, искать в App.css */
 
     .content_type_landing {
         width: 100%;
@@ -24,10 +14,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .content {
-        min-height: calc(100vh - 271px - 79px);
-        width: calc(100% - 2*(10px));
-    }
+    /* стиль .content - переиспользуемый, искать в App.css */
 
     .content_type_landing {
         width: 100%;

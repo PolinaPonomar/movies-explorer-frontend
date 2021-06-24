@@ -1,9 +1,4 @@
-.pink-wrapper {
-    width: 100%;
-    background-color: #F3C1F8;
-    display: flex;
-    justify-content: center;
-}
+/* стиль .pink-wrapper - переиспользуемый, искать в App.css */
 
 .promo {
     width: calc(100% - 2*(70px));
@@ -69,7 +64,6 @@
     .promo__title {
         margin: 183px 0 60px 0;
         width: calc((300/320)*100vw);
-        /* width: 300px; */
         font-size: 31px;
         line-height: 126%;
     }

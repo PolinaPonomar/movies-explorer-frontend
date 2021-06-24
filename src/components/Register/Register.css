@@ -1,63 +1,7 @@
-.login-goul-page {
-    margin: 36px 0 70px;
-    display: flex;
-    flex-direction: column;
-    width: 396px;
-}
+/* стиль .login-goul-page  - переиспользуемый, искать в App.css */
 
-.login-goul-page__title {
-    margin: 0 0 40px;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 29px;
-}
+/* стиль .login-goul-page__title  - переиспользуемый, искать в App.css */
 
-.login-goul-page__text {
-    margin: 16px 0 0;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    text-align: center;
-    color: #A0A0A0;
-}
+/* стиль .login-goul-page__text  - переиспользуемый, искать в App.css */
 
-.login-goul-page__link {
-    text-decoration: none;
-    color: #000000;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-}
-
-.login-goul-page__link:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
-
-@media screen and (max-width: 768px) {
-    .login-goul-page {
-        margin: 35px 0 232px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .login-goul-page {
-        margin: 45px 0 30px;
-        width: calc(100vw*260/320);
-    }
-
-    .login-goul-page__title {
-        margin: 0 0 80px;
-        text-align: center;
-    }
-
-    .login-goul-page__text {
-        font-size: 12px;
-        line-height: 15px;
-    }
-    
-    .login-goul-page__link {
-        font-size: 12px;
-        line-height: 15px;
-    }
-}
+/* стиль .login-goul-page__link  - переиспользуемый, искать в App.css */

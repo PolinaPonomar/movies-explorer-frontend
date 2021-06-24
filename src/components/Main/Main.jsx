@@ -6,12 +6,12 @@ import AboutMe from '../AboutMe/AboutMe';
 
 function Main() {
     return (
-        <div className="content content_type_landing">
+        <main className="content content_type_landing">
             <Promo/>
             <AboutProject/>
             <Techs/>
             <AboutMe/>
-        </div>
+        </main>
     );
 }
 

@@ -1,9 +1,4 @@
-.pink-wrapper {
-    width: 100%;
-    background-color: #F3C1F8;
-    display: flex;
-    justify-content: center;
-}
+/* стиль .pink-wrapper - переиспользуемый, искать в App.css */
 
 .header {
     padding: 18px 0 18px 0;
@@ -15,14 +10,14 @@
     background-color:  #FFFFFF;
 }
 
+.header_background_pink {
+    background-color: #F3C1F8;
+}
+
 .header_page_login-goul {
     padding: 70px 0 0;
     align-items: flex-end;
     width: 396px;
-}
-
-.header_background_pink {
-    background-color: #F3C1F8;
 }
 
 .header__logo:hover {

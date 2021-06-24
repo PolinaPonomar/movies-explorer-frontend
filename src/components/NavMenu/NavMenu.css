@@ -80,42 +80,17 @@
     border-bottom: 2px solid #000000;
 }
 
-.account-button {
-    margin-left: 50px;
-    width: 100px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid rgba(170, 170, 170, 0.2);
-    box-sizing: border-box;
-    border-radius: 50px;
-    
-    text-decoration: none;
-    color: #000000;
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 16px;
-}
-
-.account-button:hover {
-    opacity: 0.5;
-    cursor: pointer;
-}
+/* стиль .account-button - переиспользуемый, искать в App.css */
 
 .account-button_type_menu {
     margin: 0 0 90px 0;
 }
 
-.account-button__icon {
-    margin-right: 7px;
-}
+/* стиль .account-button__icon - переиспользуемый, искать в App.css */
 
 @media screen and (max-width: 768px) {
-    .account-button {
-        display: none
-    }
-
+    /* стиль .account-button - переиспользуемый, искать в App.css */
+    
     .account-button_type_menu {
         display: flex;
     }

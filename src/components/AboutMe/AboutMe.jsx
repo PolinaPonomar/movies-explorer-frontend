@@ -1,6 +1,5 @@
 import './AboutMe.css';
 import photo from '../../images/personal-photo.jpg';
-// import girl from '../../images/girl.jpg';
 import Portfolio from '../Portfolio/Portfolio';
 
 function AboutMe() {
