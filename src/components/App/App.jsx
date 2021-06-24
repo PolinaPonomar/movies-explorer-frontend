@@ -9,7 +9,8 @@ import Profile from '../Profile/Profile.jsx';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import Footer from '../Footer/Footer.jsx';
-import cards from '../../utils/utils';
+import {cards, savedCards } from '../../utils/utils';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -38,7 +39,7 @@ function App() {
               <Movies cards={cards}/>
             </Route>
             <Route path="/saved-movies">
-              <SavedMovies />
+              <SavedMovies cards={savedCards}/>
             </Route>
             <Route path="/profile">
               <Profile />

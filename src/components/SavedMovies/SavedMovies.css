@@ -1,0 +1,16 @@
+.empty-place {
+    width: 100%;
+    height: 140px;
+}
+
+@media screen and (max-width: 768px) {
+    .empty-place {
+        height: 65px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .empty-place {
+        height: 60px;
+    }
+}

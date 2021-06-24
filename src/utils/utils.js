@@ -98,4 +98,27 @@ const cards = [
     },
 ]
 
-export default cards;
+const savedCards = [
+    {   
+        _id: 1,
+        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
+        img: imgOne ,
+        name: '33 слова о дизайне',
+        duration: '1ч 47м',
+    },
+    {
+        _id: 2,
+        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
+        img: imgTwo,
+        name: 'Киноальманах «100 лет дизайна»',
+        duration: '1ч 3м',
+    },
+    {
+        _id: 3,
+        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
+        img: imgThree,
+        name: 'В погоне за Бенкси',
+        duration: '1ч 42м',
+    },
+]
+export { cards, savedCards};

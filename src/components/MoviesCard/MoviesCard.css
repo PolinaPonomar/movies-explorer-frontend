@@ -6,6 +6,10 @@
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.08);
 }
 
+.movie_usaved {
+    display: none;
+}
+
 .movie__img {
     width: 100%;
     height: 203px;
@@ -38,6 +42,29 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+
+.movie__unsave {
+    display: none;
+    margin: 2px 8px 0 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    width: 14px;
+    height: 12px;
+    background-image: url('../../images/unsave-icon.svg');
+    background-size: 10px 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.movie__unsave:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.movie__info:hover .movie__unsave {
+    display: flex;
 }
 
 .movie__like {
@@ -103,5 +130,9 @@
     .movie__duration {
         font-size: 10px;
         line-height: 12px;
+    }
+
+    .movie__unsave {
+        display: flex;
     }
 }

@@ -8,7 +8,7 @@ function Movies(props) {
             <SearchForm/>
             <MoviesCardList cards={props.cards}/>
             <div className="more-movies">
-                <button className="more-movies__button">Еще</button>
+                <button className="more-movies__button">Ещё</button>
             </div>
         </main>
     );

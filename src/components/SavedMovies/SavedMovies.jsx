@@ -1,6 +1,14 @@
-function SavedMovies () {
+import './SavedMovies.css';
+import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+
+function SavedMovies(props) {
     return (
-        <p>SavedMovies </p>
+        <main className="content">
+            <SearchForm/>
+            <MoviesCardList cards={props.cards}/>
+            <div className="empty-place"></div>
+        </main>
     );
 }
 
