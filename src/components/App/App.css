@@ -10,6 +10,7 @@
 
 /* переиспользуемые стили */
 
+/* блок pink-wrapper  (Header, Promo)*/
 .pink-wrapper {
     width: 100%;
     background-color: #F3C1F8;
@@ -17,6 +18,7 @@
     justify-content: center;
 }
 
+/* блок section-title  (AboutProject, Techs, AboutMe)*/
 .section-title {
     margin: 0;
     padding: 0 0 23px;
@@ -27,7 +29,7 @@
     border-bottom: 1px solid #000000;
 }
 
-/* блок account-button */
+/* блок account-button   (Navigation, NavMenu)*/
 .account-button {
     margin-left: 50px;
     width: 100px;
@@ -55,7 +57,7 @@
     margin-right: 7px;
 }
 
-/* блок contacts */
+/* блок contacts  (AboutMe, Footer)*/
 .contacts {
     margin: 0;
     padding: 0;
@@ -84,7 +86,7 @@
     cursor: pointer;
 }
 
-/* блок content  */
+/* блок content  (Main, Movies, SavedMovies)*/
 .content {
     min-height: calc(100vh - 173px - 76px);
     width: calc(100% - 2*(70px));
@@ -94,7 +96,7 @@
     align-items: center;
 }
 
-/* блок login-goul-page  */
+/* блок login-goul-page  (Register, Login)*/
 .login-goul-page {
     margin: 36px 0 70px;
     display: flex;
