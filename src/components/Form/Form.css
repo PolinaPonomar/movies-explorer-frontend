@@ -12,6 +12,7 @@
 .form__group {
     width: 100%;
     display: none;
+    flex-direction: column;
     align-items: center;
     position: relative;
 }
@@ -38,6 +39,25 @@
 
 .form__input:focus {
     outline: none;
+}
+
+.form__input_type_error {
+    margin: 0 0 6px;
+    color: #FF4062;
+}
+
+.form__input-error {
+    margin: 0 0 6px;
+    display: none;
+    width: 100%;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+    color: #FF4062;
+}
+
+.form__input-error_active {
+    display: flex;
 }
 
 .form__label {
