@@ -33,13 +33,16 @@ function App() {
         />
         <Switch>
             <Route exact path="/">
-              <Main /> 
+              <Main />
+              <Footer />
             </Route>
             <Route path="/movies">
               <Movies cards={cards}/>
+              <Footer />
             </Route>
             <Route path="/saved-movies">
               <SavedMovies cards={savedCards}/>
+              <Footer />
             </Route>
             <Route path="/profile">
               <Profile />
@@ -51,7 +54,6 @@ function App() {
               <Register />
             </Route>
         </Switch>
-        <Footer />
     </div>
   );
 }
