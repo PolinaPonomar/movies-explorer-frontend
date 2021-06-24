@@ -1,8 +1,14 @@
+import { useLocation } from 'react-router-dom';
 import './Footer.css';
+import { projectInternalPagesList } from '../../utils/utils';
 
 function Footer () {
+    const location = useLocation().pathname;
+    const landing = (location === "/") ? true : false;
+    const internalPage = projectInternalPagesList.includes(location);
+
     return (
-        <div className="footer">
+        <footer className={`footer ${(!internalPage && !landing) && 'footer_invisible'}`}>
             <p className="footer__text">Учебный проект Яндекс.Практикум х BeatFilm.</p>
             <nav className="footer__contacts">
                 <p className="footer__year">&copy; 2021</p>
@@ -39,7 +45,7 @@ function Footer () {
                         </li>
                     </ul>
             </nav>
-        </div>
+        </footer>
     );
 }
 

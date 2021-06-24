@@ -11,6 +11,8 @@ import imgTen from '../images/img-10.jpg';
 import imgEleven from '../images/img-11.jpg';
 import imgTwelve from '../images/img-12.jpg';
 
+const projectInternalPagesList = ["/movies", "/saved-movies"]; 
+
 const cards = [
     {   
         _id: 1,
@@ -121,4 +123,5 @@ const savedCards = [
         duration: '1ч 42м',
     },
 ]
-export { cards, savedCards};
+
+export { cards, savedCards, projectInternalPagesList};

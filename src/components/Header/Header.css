@@ -15,7 +15,7 @@
     background-color:  #FFFFFF;
 }
 
-.header_page_authorization {
+.header_page_login-goul {
     padding: 70px 0 0;
     align-items: flex-end;
     width: 396px;
@@ -35,7 +35,7 @@
         width: calc(100% - 2*(30px));
     }
 
-    .header_page_authorization {
+    .header_page_login-goul {
         padding: 232px 0 0;
         width: 396px;
     }
@@ -46,7 +46,7 @@
         width: calc(100% - 2*(14px));
     }
 
-    .header_page_authorization {
+    .header_page_login-goul {
         padding: 56px 0 0;
         width: auto;
     }
