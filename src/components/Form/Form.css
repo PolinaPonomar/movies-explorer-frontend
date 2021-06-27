@@ -39,11 +39,17 @@
 
 .form__input:focus {
     outline: none;
+    border-bottom: 1px solid #000000;
+    box-sizing: border-box;
 }
 
 .form__input_type_error {
     margin: 0 0 6px;
     color: #FF4062;
+}
+
+.form__input_type_error:focus {
+    border-bottom: 1px solid #FF4062;
 }
 
 .form__input-error {

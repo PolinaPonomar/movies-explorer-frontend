@@ -40,8 +40,8 @@
     padding: 0;
     width: 690px;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    column-gap: 10px;
+    grid-template-columns: repeat(auto-fit, 90px);
+    gap: 10px;
     justify-content: center;
     align-self: center;
     list-style-type: none;
@@ -76,6 +76,7 @@
 
     .techs__table {
         width: calc(100vw * 658/768);
+        grid-template-columns: repeat(auto-fit, 84px);
     }
     .techs__table-item {
         font-size: 12px;
@@ -107,6 +108,5 @@
     .techs__table {
         width: calc(100vw * 178/320);
         grid-template-columns: repeat(auto-fit, 84px);
-        gap: 10px;
     }
 }
