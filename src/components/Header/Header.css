@@ -1,0 +1,48 @@
+/* стиль .pink-wrapper - переиспользуемый, искать в App.css */
+
+.header {
+    padding: 18px 0 18px 0;
+    width: calc(100% - 2*(70px));
+    max-width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:  #FFFFFF;
+}
+
+.header_background_pink {
+    background-color: #F3C1F8;
+}
+
+.header_page_login-goul {
+    padding: 70px 0 0;
+    align-items: flex-end;
+    width: 396px;
+}
+
+.header__logo:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        width: calc(100% - 2*(30px));
+    }
+
+    .header_page_login-goul {
+        padding: 232px 0 0;
+        width: 396px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        width: calc(100% - 2*(14px));
+    }
+
+    .header_page_login-goul {
+        padding: 56px 0 0;
+        width: auto;
+    }
+}

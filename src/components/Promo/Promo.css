@@ -1,0 +1,77 @@
+/* стиль .pink-wrapper - переиспользуемый, искать в App.css */
+
+.promo {
+    width: calc(100% - 2*(70px));
+    max-width: 1280px;
+    display: flex;
+    flex-direction: column;
+    background-color: #F3C1F8;
+}
+
+.promo__title {
+    margin: 50px 0 102px 0;
+    padding: 0;
+    width: 626px;
+    align-self: flex-start;
+    font-weight: normal;
+    font-size: 40px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+}
+
+.promo__img {
+    margin-bottom: 56px;
+    width: 722px;
+    height: 244px;
+    background-image: url("../../images/landing-image.svg");
+    align-self: flex-end;
+}
+
+@media screen and (max-width: 768px) {
+    .promo  {
+        width: calc(100% - 2*(30px));
+    }
+
+    .promo__title {
+        margin: 300px 0 140px 0;
+        width: calc((680/768)*100vw);
+        text-align: center;
+        align-self: center;
+    }
+
+    .promo__img {
+        margin-bottom: 66px;
+        width: 680px;
+        height: 230px;
+        background-size: 680px 230px;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 690px) {
+    .promo__img {
+        width: 100vw;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .promo {
+        width: calc(100% - 2*(14px));
+    }
+
+    .promo__title {
+        margin: 183px 0 60px 0;
+        width: calc((300/320)*100vw);
+        font-size: 31px;
+        line-height: 126%;
+    }
+
+    .promo__img {
+        width: 100vw;
+        height: 230px;
+        margin-bottom: 37px;
+        background-position: center;
+    }
+}

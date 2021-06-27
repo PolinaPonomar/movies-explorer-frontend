@@ -1,0 +1,22 @@
+/* стиль .content - переиспользуемый, искать в App.css */
+
+.content_type_landing {
+    width: 100%;
+    max-width: none;
+}
+
+@media screen and (max-width: 768px) {
+    /* стиль .content - переиспользуемый, искать в App.css */
+
+    .content_type_landing {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* стиль .content - переиспользуемый, искать в App.css */
+
+    .content_type_landing {
+        width: 100%;
+    }
+}

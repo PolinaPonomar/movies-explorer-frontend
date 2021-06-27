@@ -1,0 +1,112 @@
+.grey-wrapper {
+    width: 100%;
+    background-color: #F5F5F5;
+    display: flex;
+    justify-content: center;
+}
+.techs {
+    padding: 100px 0 100px;
+    width: calc(100% - 2*(70px));
+    max-width: 1280px;
+    background-color: #F5F5F5;
+    display: flex;
+    flex-direction: column;
+}
+
+/* стиль .section-title - переиспользуемый, искать в App.css */
+
+.techs__title  {
+    margin: 90px 0 26px;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 116%;
+    letter-spacing: -0.04em;
+    align-self: center;
+}
+
+.techs__text {
+    margin: 0 0 100px;
+    width: 460px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 143%;
+    text-align: center;
+    letter-spacing: -0.04em;
+    align-self: center;
+}
+
+.techs__table {
+    margin: 0;
+    padding: 0;
+    width: 690px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    column-gap: 10px;
+    justify-content: center;
+    align-self: center;
+    list-style-type: none;
+}
+
+.techs__table-item {
+    padding: 21px 0 22px;
+    background-color: #E8E8E8;
+    border-radius: 10px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: -0.04em;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 90px 0 90px;
+        width: calc(100% - 2*(50px));
+    }
+
+    .techs__title  {
+        margin: 80px 0 22px;
+    }
+
+    .techs__text {
+        margin: 0 0 83px;
+        font-size: 12px;
+        line-height: 150%;
+    }
+
+    .techs__table {
+        width: calc(100vw * 658/768);
+    }
+    .techs__table-item {
+        font-size: 12px;
+        line-height: 15px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .techs {
+        padding: 70px 0 70px;
+        width: calc(100% - 2*(18px));
+    }
+
+    /* стиль .section-title - переиспользуемый, искать в App.css */
+
+    .techs__title  {
+        margin: 60px 0 24px;
+        font-size: 30px;
+        line-height: 36px;
+    }
+
+    .techs__text {
+        margin: 0 0 50px;
+        width: calc(100vw*292/320);
+        font-size: 11px;
+        line-height: 145%;
+    }
+
+    .techs__table {
+        width: calc(100vw * 178/320);
+        grid-template-columns: repeat(auto-fit, 84px);
+        gap: 10px;
+    }
+}

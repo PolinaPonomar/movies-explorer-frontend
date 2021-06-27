@@ -1,0 +1,121 @@
+.navigation {
+    display: flex;
+}
+
+.navigation__links {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style-type: none;
+    align-items: center;
+}
+
+.navigation__links-item {
+    margin-right: 20px;
+}
+
+.navigation__links-item:last-of-type {
+    margin: 0;
+}
+
+.navigation__link {
+    text-decoration: none;
+    color: #000000;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.navigation__link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.navigation__link:focus {
+    font-weight: 500;
+}
+
+.navigation__link_type_not-authorized {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+}
+
+/* стиль .account-button - переиспользуемый, искать в App.css */
+
+/* стиль .account-button__icon - переиспользуемый, искать в App.css */
+
+.navigation__hamburger-menu {
+    display: none;
+    padding: 0;
+    height: 44px;
+    width: 44px;
+    border: none;
+    background-color: transparent;
+    background-image: url(../../images/hamburger-menu-icon.svg);
+}
+
+.navigation__hamburger-menu:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.navigation__enter-link {
+    margin-left: 30px;
+    width: 76px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    text-align: center;
+    align-self: center;
+}
+
+.navigation__enter-link:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .navigation__link {
+        display: none;
+    }
+
+    .navigation__link_type_not-authorized {
+        display: flex;
+    }
+
+    /* стиль .account-button - переиспользуемый, искать в App.css */
+
+    .navigation__hamburger-menu {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navigation__link {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .navigation__enter-link {
+        margin-left: 14px;
+        width: 54px;
+        height: 26px;
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .navigation__hamburger-menu {
+        height: 43px;
+        width: 40px;
+        background-size: 40px 43px;
+    }
+}
