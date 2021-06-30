@@ -1,11 +1,27 @@
 .movies {
     padding: 80px 0 10px;
     width: 100%;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(auto-fit, 364px);
     column-gap: 24px;
     row-gap: 37px;
     justify-content: center;
+}
+
+.movies_opened {
+    display: grid;
+}
+
+.movies__not-found-text {
+    margin: 0;
+    display: none;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+}
+
+.movies__not-found-text_opened {
+    display: block;
 }
 
 @media screen and (max-width: 768px) {
@@ -22,4 +38,9 @@
         grid-template-columns: repeat(auto-fit, 300px);
         row-gap: 14px;
     }
+
+    .movies__not-found-text {
+        margin: 22px 0 22px;
+        font-size: 18px;
+    }    
 }

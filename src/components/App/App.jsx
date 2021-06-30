@@ -10,7 +10,8 @@ import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Footer from '../Footer/Footer.jsx';
-import {cards, savedCards } from '../../utils/utils';
+// import {cards, savedCards } from '../../utils/utils';
+import { savedCards } from '../../utils/utils';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
@@ -36,7 +37,7 @@ function App() {
               <Main />
             </Route>
             <Route path="/movies">
-              <Movies cards={cards}/>
+              <Movies />
             </Route>
             <Route path="/saved-movies">
               <SavedMovies cards={savedCards}/>
