@@ -16,9 +16,6 @@ function checkInputValidity (input) {
 
 function makeVlidationMessage (input) {
     if (!input.value) {
-        if (input.name === 'searchLine') {
-            return 'Нужно ввести ключевое слово'
-        }
         return 'Заполните это поле'
     }
     if (input.name === 'email') {
