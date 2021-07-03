@@ -9,15 +9,22 @@ const checkResponse = (res) => {
     return Promise.reject(`Ошибка: ${res.status}`) 
 }
 
-export const register = ({username, email, password}) => {
+export const register = ({name, email, password}) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
         },
-        body: JSON.stringify({username, email, password})
+        body: JSON.stringify({name, email, password})
     })
-    .then(checkResponse)
+    .then((res) => {
+        if(res.ok) {
+            return res.json()
+        } else if (res.status === 409) {
+            return Promise.reject('Пользователь с таким email уже существует')
+        }
+        return Promise.reject('Что-то пошло не так! Попробуйте ещё раз :(')
+    })
 };
 
 export const authorize = ({email, password}) => {
@@ -53,14 +60,14 @@ export const getUserInfo = () => {
     .then(checkResponse)
 };
 
-export const setUserInfo = ({username, email}) => {
+export const setUserInfo = ({name, email}) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'PATCH',
         headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
         },
-        body: JSON.stringify({username, email})
+        body: JSON.stringify({name, email})
     })
     .then(checkResponse)
 };
