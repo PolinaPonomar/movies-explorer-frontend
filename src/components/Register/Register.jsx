@@ -22,7 +22,7 @@ function Register (props) {
                 inputPassword={true}
                 handleSubmit={handleSubmit}
                 validation={validation}
-                errorMessage={props.errorRegistrationMessage}
+                errorMessage={props.errorMessage}
             />
             <p className="login-goul-page__text">Уже зарегистрированы?
                 <Link to="/signin"className="login-goul-page__link"> Войти</Link>

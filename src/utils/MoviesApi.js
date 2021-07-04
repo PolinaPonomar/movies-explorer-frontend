@@ -13,8 +13,7 @@ export const getMovies = () => {
     return fetch(`${MOVIES_URL}/beatfilm-movies`, {
         method: 'GET',
         headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+            'Content-Type': 'application/json',
         }
     })
     .then(checkResponse)

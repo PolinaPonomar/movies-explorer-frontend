@@ -35,19 +35,13 @@ export const authorize = ({email, password}) => {
         },
         body: JSON.stringify({email, password})
     })
-    .then(checkResponse)
+    .then((res) => {
+        if(res.ok) {
+            return res.json()
+        }
+        return Promise.reject('Неправильный логин или пароль')
+    })
 };
-
-// export const getContent = (token) => { // нужно ли?
-//     return fetch(`${BASE_URL}/users/me`, {
-//         method: 'GET',
-//         headers: {
-//         'Content-Type': 'application/json',
-//         'Authorization': `Bearer ${token}`,
-//         }
-//     })
-//     .then(checkResponse)
-// };
 
 export const getUserInfo = () => {
     return fetch(`${BASE_URL}/users/me`, {
@@ -93,3 +87,9 @@ export const deleteSavedMovie = (movieId) => {
     })
     .then(checkResponse)
 };
+
+// на всякий случай
+// export const updateAuthorizationToken = () => {
+//     headers.authorization = `Bearer ${localStorage.getItem('jwt')}`;
+//     console.log('я сработала', localStorage.getItem('jwt') );
+// }

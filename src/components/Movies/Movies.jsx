@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './Movies.css';
 import * as MoviesApi from '../../utils/MoviesApi';
+// import {api, MOVIES_URL} from '../../utils/MoviesApi';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
