@@ -23,6 +23,7 @@ function App() {
   // const [tokenCheckHappend, setTokenCheckHappend] = useState(false);
   const [isNavMenuOpen,setIsNavMenuOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [resultMessage, setResultMessage] = useState('');
 
   const handleMenuClick = () => {
     setIsNavMenuOpen(true);
@@ -87,6 +88,18 @@ function App() {
     history.push('/');
   }
 
+  const handleEditUserInfo = (inputs) => {
+    MainApi.setUserInfo(inputs)
+      .then((data) => {
+        setCurrentUser(data);
+        setResultMessage('Ура! Данные обновлены :)');
+      })
+      .catch((err) => {
+        setResultMessage(err);
+        console.log(err);
+      })
+  }
+
   return (
     < CurrentUserContext.Provider value={currentUser}>
       <div className="page"> 
@@ -116,6 +129,8 @@ function App() {
                 loggedIn={loggedIn}
                 component={Profile}
                 onSignOut={handleSignOut}
+                onEditUserInfo={handleEditUserInfo}
+                resultMessage={resultMessage}
               />
               <Route path="/signin">
                 <Login onLogin={handleLogin} errorMessage={errorMessage}/>

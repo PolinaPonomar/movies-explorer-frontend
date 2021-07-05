@@ -63,7 +63,14 @@ export const setUserInfo = ({name, email}) => {
         },
         body: JSON.stringify({name, email})
     })
-    .then(checkResponse)
+    .then((res) => {
+        if(res.ok) {
+            return res.json()
+        } else if (res.status === 409) {
+            return Promise.reject('Пользователь с таким email уже существует')
+        }
+        return Promise.reject('Что-то пошло не так! Попробуйте ещё раз :(')
+    })
 };
 
 export const getSavedMovies = () => {
