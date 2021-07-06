@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 import * as MoviesApi from '../../utils/MoviesApi';
@@ -7,31 +6,29 @@ import { minutesIntoHoursConversion } from '../../utils/utils';
 function MoviesCard(props) {
     const location = useLocation().pathname;
     const savedMovies = (location === "/saved-movies") ? true : false;
-
     const isCardSaved = props.savedCards.map(item => item.movieId).includes(props.card.id);
-    // const [isCardSaved, setIsCardSaved] = useState(false);
-    const [isCardUnsaved, setIsCardUnsaved] = useState(false);
 
     const handleCardSave = () => {
-        props.onCardSave(props.card); // прописать эту функцию
+        props.onCardSave(props.card);
     };
 
     const handleCardUnsave = () => {
-        setIsCardUnsaved(true)
+        props.onCardUnsave(props.card);
     };
 
-    // console.log( props.savedCards.map(item => item.movieId).includes(props.card.id));
     return (
-        <article className={`movie ${isCardUnsaved && 'movie_usaved'}`}>
-            <a href={props.card.trailerLink} className="movie__link" target="_blank" rel="noreferrer">
+        <article className="movie">
                 { savedMovies ?
                     (
-                        <div className="movie__img" style={{ backgroundImage: `url(${props.card.image})` }} ></div>
+                        <a href={props.card.trailer} className="movie__link" target="_blank" rel="noreferrer">
+                            <div className="movie__img" style={{ backgroundImage: `url(${props.card.image})` }} ></div>
+                        </a>
                     ) : (
-                        <div className="movie__img" style={{ backgroundImage: `url(${ MoviesApi.MOVIES_URL + props.card.image.url})` }} ></div>
+                        <a href={props.card.trailerLink} className="movie__link" target="_blank" rel="noreferrer">
+                            <div className="movie__img" style={{ backgroundImage: `url(${ MoviesApi.MOVIES_URL + props.card.image.url})` }} ></div>
+                        </a>
                     )
                 }
-            </a>
             <div className="movie__info">
                 <div className="movie__wrapper">
                     <p className="movie__name">{props.card.nameRU}</p>

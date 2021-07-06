@@ -1,28 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
 import './SavedMovies.css';
-import * as MainApi from '../../utils/MainApi';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function SavedMovies(props) {
-    // const [savedCards, setSavedCards] = useState([])
-
-    // useEffect( () => {
-    //     MainApi.getSavedMovies()
-    //         .then((movies) => {
-    //             setSavedCards(movies);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         })
-    // }, []);
-
-    console.log(props.savedCards);
+    // подписка на контекст информации о юзере
+    const currentUser = useContext(CurrentUserContext);
+    const cardsSavedCurrentUser = props.savedCards.filter(item => item.owner._id === currentUser._id);
+    const searchedCardsSavedCurrentUser = props.searchedSavedCards.filter(item => item.owner._id === currentUser._id);
 
     return (
         <main className="content">
             <SearchForm onShowMovies={props.onShowMovies}/>
-            <MoviesCardList savedCards={props.savedCards}/>
+            <MoviesCardList 
+                savedCards={cardsSavedCurrentUser}
+                onCardUnsave={props.onCardUnsave}
+                searchedSavedCards={searchedCardsSavedCurrentUser}
+                isSearchButtonPressed={props.isSearchButtonPressed}
+            />
             <div className="empty-place"></div>
         </main>
     );

@@ -20,11 +20,9 @@ function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [tokenCheckHappend, setTokenCheckHappend] = useState(false); ??
   const [isNavMenuOpen,setIsNavMenuOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [resultMessage, setResultMessage] = useState('');
-
   // стейты для работы с карточками фильмов
   const location = useLocation().pathname;
   const [isPreloaderOpen, setIsPreloaderOpen] = useState(false);
@@ -33,7 +31,8 @@ function App() {
   const [allCards, setAllCards] = useState([]);
   const [searchedCards, setSearchedCards] = useState([]);
   const [savedCards, setSavedCards] = useState([]);
-  // const [searchedSavedCards, setSearchedSavedCards] = useState();
+  const [searchedSavedCards, setSearchedSavedCards] = useState(savedCards);
+  const [isSearchButtonPressed, setIsSearchButtonPressed] = useState(false);
   // вывод карточек по нескольку вряд
   const [numberOfInitialCards, setNumberOfInitialCards] = useState(0);
   const [maxNumberOfAddedCards, setMaxNumberOfAddedCards] = useState(0);
@@ -163,16 +162,19 @@ function App() {
         })
     } else {
       const thisMovieInSavedCards = savedCards.find(item => item.movieId === movie.id);
-      MainApi.deleteSavedMovie(thisMovieInSavedCards._id)
-        .then((data) => {
-          console.log(savedCards);
-          const updateSavedCards = savedCards.filter(item => item !== thisMovieInSavedCards );
-          setSavedCards(updateSavedCards);
-        })
-        .catch((err) => {
-          console.log(err);
-        })
+      handleCardUnsave(thisMovieInSavedCards);
     }
+  }
+
+  const handleCardUnsave = (movie) => {
+    MainApi.deleteSavedMovie(movie._id)
+      .then(() => {
+        const updateSavedCards = savedCards.filter(item => item !== movie );
+        setSavedCards(updateSavedCards);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   const handleShowMovies = (searchText) => {
@@ -208,7 +210,8 @@ function App() {
       }
     } else if (location === '/saved-movies') {
         // отфильтровать запрос и отдать в MoviesCardList
-        // setSearchedCards(filterCards(savedCards,searchText));
+        setSearchedSavedCards(filterCards(savedCards, searchText));
+        setIsSearchButtonPressed(true);
     }
   };
 
@@ -250,7 +253,9 @@ function App() {
                 component={SavedMovies}
                 onShowMovies={handleShowMovies}
                 savedCards={savedCards}
-                // searchedCards={searchedCards}
+                onCardUnsave={handleCardUnsave}
+                searchedSavedCards={searchedSavedCards}
+                isSearchButtonPressed={isSearchButtonPressed}
               />
               <ProtectedRoute
                 path="/profile"

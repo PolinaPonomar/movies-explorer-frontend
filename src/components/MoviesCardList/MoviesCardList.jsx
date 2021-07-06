@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
@@ -6,18 +5,32 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList(props) {
     const location = useLocation().pathname;
     const savedMovies = (location === "/saved-movies") ? true : false;
-    // const foundCards = props.searchedCards;
-    // const shownCards = props.shownCards;
-
+    
     return (
         <>
         { savedMovies ?
             (
                 <section className="movies movies_opened" style={{ paddingBottom: "107px" }} >
-                    {/* <p className={`movies__not-found-text ${props.isCardsNotFound && 'movies__not-found-text_opened'}`}>Ничего не найдено</p> */}
                     <p className={`movies__not-found-text`}>Ничего не найдено</p>
                     <div className="movies__grid movies__grid_opened">
-                        { props.savedCards.map(item => (<MoviesCard card={item} key={item.movieId} savedCards={props.savedCards}/>)) }
+                        { props.isSearchButtonPressed ?
+                            (props.searchedSavedCards.map(item => 
+                                (<MoviesCard 
+                                    card={item} 
+                                    key={item.movieId} 
+                                    savedCards={props.savedCards}
+                                    onCardUnsave={props.onCardUnsave}
+                                />))
+                            ) : (
+                                props.savedCards.map(item => 
+                                    (<MoviesCard 
+                                        card={item} 
+                                        key={item.movieId} 
+                                        savedCards={props.savedCards}
+                                        onCardUnsave={props.onCardUnsave}
+                                    />))
+                            )
+                        }
                     </div>
                 </section>
             ) : (
