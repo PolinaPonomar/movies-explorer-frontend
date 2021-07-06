@@ -37,6 +37,12 @@ const minutesIntoHoursConversion = (minutes) => {
     return minutes + 'м';
 };
 
+const filterCards = (movies, searchText) => {
+  return movies.filter(item => 
+    (item.nameRU !== null && item.nameRU.toLowerCase().includes(searchText.toLowerCase())) ||
+    (item.nameEN !== null && item.nameEN.toLowerCase().includes(searchText.toLowerCase()))  )
+};
+
 const defineShownCardsParameters = (pageWidth) => {
     if (pageWidth >= 1280) {
         return {numOfInitialCards: 12,maxNumOfAddedCards: 3}
@@ -47,4 +53,4 @@ const defineShownCardsParameters = (pageWidth) => {
       }
 };
 
-export { minutesIntoHoursConversion, defineShownCardsParameters, savedCards, projectInternalPagesList};
+export { minutesIntoHoursConversion, filterCards, defineShownCardsParameters, savedCards, projectInternalPagesList};

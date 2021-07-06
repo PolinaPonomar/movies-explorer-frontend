@@ -1,6 +1,7 @@
 // сохранение фильмов и авторизация
-
 export const BASE_URL = 'https://api.movies-explorer.ppol.nomoredomains.icu';
+
+const MOVIES_URL = 'https://api.nomoreparties.co';
 
 const checkResponse = (res) => {
     if(res.ok) {
@@ -83,6 +84,31 @@ export const getSavedMovies = () => {
     })
     .then(checkResponse)
 };
+
+export const saveMovie = (movieData) => {
+    return fetch(`${BASE_URL}/movies`, {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+        },
+        body: JSON.stringify({
+            country: movieData.country,
+            director: movieData.director,
+            duration: movieData.duration,
+            year: movieData.year,
+            description: movieData.description,
+            image: MOVIES_URL + movieData.image.url,
+            trailer: movieData.trailerLink,
+            thumbnail: MOVIES_URL + movieData.image.formats.thumbnail.url,
+            movieId: movieData.id,
+            nameRU: movieData.nameRU,
+            nameEN: movieData.nameEN,
+        })
+
+    })
+    .then(checkResponse)
+}
 
 export const deleteSavedMovie = (movieId) => {
     return fetch(`${BASE_URL}/movies/${movieId}`, {

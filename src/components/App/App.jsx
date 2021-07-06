@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import './App.css';
 import * as MainApi from '../../utils/MainApi';
+import * as MoviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Header from '../Header/Header.jsx';
@@ -13,17 +14,31 @@ import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Footer from '../Footer/Footer.jsx';
-
-import { savedCards } from '../../utils/utils';
+import { filterCards, defineShownCardsParameters } from '../../utils/utils';
 
 function App() {
   const history = useHistory();
   const [currentUser, setCurrentUser] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [tokenCheckHappend, setTokenCheckHappend] = useState(false);
+  // const [tokenCheckHappend, setTokenCheckHappend] = useState(false); ??
   const [isNavMenuOpen,setIsNavMenuOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [resultMessage, setResultMessage] = useState('');
+
+  // стейты для работы с карточками фильмов
+  const location = useLocation().pathname;
+  const [isPreloaderOpen, setIsPreloaderOpen] = useState(false);
+  const [isMoviesCardListOpen, setIsMoviesCardListOpen] = useState(false);
+  const [isServerError, setIsServerError] = useState(false);
+  const [allCards, setAllCards] = useState([]);
+  const [searchedCards, setSearchedCards] = useState([]);
+  const [savedCards, setSavedCards] = useState([]);
+  // const [searchedSavedCards, setSearchedSavedCards] = useState();
+  // вывод карточек по нескольку вряд
+  const [numberOfInitialCards, setNumberOfInitialCards] = useState(0);
+  const [maxNumberOfAddedCards, setMaxNumberOfAddedCards] = useState(0);
+  const [shownCards, setShownCards] = useState([]);
+
 
   const handleMenuClick = () => {
     setIsNavMenuOpen(true);
@@ -32,8 +47,41 @@ function App() {
     setIsNavMenuOpen(false);
   };
 
+  const setShownCardsParameters = () => {
+    const pageWidth = window.innerWidth;
+    const shownCardsParameters = defineShownCardsParameters(pageWidth);
+    setNumberOfInitialCards(shownCardsParameters.numOfInitialCards);
+    setMaxNumberOfAddedCards(shownCardsParameters.maxNumOfAddedCards);
+  }
+
+  // при монтировании компонента определить характеристики того, как карточки будут отображаться на странице
+  useEffect( () => {
+    setShownCardsParameters();
+  }, []);
+
+  // учесть изменение ширины экрана (переворот телефона)
+  window.addEventListener('resize', () => {
+    setTimeout(setShownCardsParameters, 1000);
+  });
+
   useEffect(() => {
     tokenCheck();
+  }, []);
+
+  useEffect( () => {
+    if (localStorage.getItem('movies')) {
+      setAllCards(JSON.parse(localStorage.getItem('movies')));
+    }
+  }, []);
+
+  useEffect( () => {
+    MainApi.getSavedMovies()
+      .then((movies) => {
+          setSavedCards(movies);
+      })
+      .catch((err) => {
+          console.log(err);
+      });
   }, []);
 
   const handleRegister = (inputs) => {
@@ -84,6 +132,9 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
+    localStorage.removeItem('movies');
+    setShownCards([]);
+    setIsMoviesCardListOpen(false);
     setLoggedIn(false);
     history.push('/');
   }
@@ -99,6 +150,59 @@ function App() {
         console.log(err);
       })
   }
+
+  const handleCardSave = (movie) => {
+    MainApi.saveMovie(movie)
+      .then((movieCard) => {
+        console.log(movieCard);
+        //  надо сделать, чтобы у фильмов из поиска отображалось сердечко
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
+
+  const handleShowMovies = (searchText) => {
+    if (location === '/movies') {
+      setIsMoviesCardListOpen(false);
+      setIsServerError(false);
+      if (allCards.length === 0) {
+        setIsPreloaderOpen(true);
+        MoviesApi.getMovies()
+          .then((movies) => {
+            setIsPreloaderOpen(false);
+            localStorage.setItem('movies', JSON.stringify(movies));
+            const allMovies = JSON.parse(localStorage.getItem('movies'));
+            setAllCards(allMovies);
+            // отфильтровать запрос и отдать в MoviesCardList
+            const filteredCards = filterCards(allMovies,searchText);
+            setSearchedCards(filteredCards);
+            setShownCards(filteredCards.slice(0, numberOfInitialCards));
+            setIsMoviesCardListOpen(true);
+          })
+          .catch((err) => {
+            setIsPreloaderOpen(false);
+            setIsServerError(true);
+            setIsMoviesCardListOpen(true);
+            console.log(err);
+          });
+      } else {
+          // отфильтровать запрос и отдать в MoviesCardList
+          const filteredCards = filterCards(allCards, searchText);
+          setSearchedCards(filteredCards);
+          setShownCards(filteredCards.slice(0, numberOfInitialCards));
+          console.log(numberOfInitialCards);
+          setIsMoviesCardListOpen(true);
+      }
+    } else if (location === '/saved-movies') {
+        // отфильтровать запрос и отдать в MoviesCardList
+        // setSearchedCards(filterCards(savedCards,searchText));
+    }
+  };
+
+  const handleMoreClick = () => {
+    setShownCards(searchedCards.slice(0, shownCards.length + maxNumberOfAddedCards));
+  };
 
   return (
     < CurrentUserContext.Provider value={currentUser}>
@@ -116,13 +220,24 @@ function App() {
               <ProtectedRoute
                 path="/movies"
                 loggedIn={loggedIn}
-                component={Movies} 
+                component={Movies}
+                onShowMovies={handleShowMovies}
+                isPreloaderOpen={isPreloaderOpen}
+                isMoviesCardListOpen={isMoviesCardListOpen}
+                isServerError={isServerError}
+                searchedCards={searchedCards}
+                shownCards={shownCards}
+                onMoreClick={handleMoreClick}
+
+                onCardSave={handleCardSave}
               />
               <ProtectedRoute
                 path="/saved-movies"
                 loggedIn={loggedIn}
                 component={SavedMovies}
-                cards={savedCards}
+                onShowMovies={handleShowMovies}
+                savedCards={savedCards}
+                // searchedCards={searchedCards}
               />
               <ProtectedRoute
                 path="/profile"
