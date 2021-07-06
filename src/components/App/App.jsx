@@ -152,14 +152,27 @@ function App() {
   }
 
   const handleCardSave = (movie) => {
-    MainApi.saveMovie(movie)
-      .then((movieCard) => {
-        console.log(movieCard);
-        //  надо сделать, чтобы у фильмов из поиска отображалось сердечко
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+    const isCardSaved = savedCards.map(item => item.movieId).includes(movie.id);
+    if (!isCardSaved) {
+      MainApi.saveMovie(movie)
+        .then((movieCard) => {
+          setSavedCards([...savedCards, movieCard]);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    } else {
+      const thisMovieInSavedCards = savedCards.find(item => item.movieId === movie.id);
+      MainApi.deleteSavedMovie(thisMovieInSavedCards._id)
+        .then((data) => {
+          console.log(savedCards);
+          const updateSavedCards = savedCards.filter(item => item !== thisMovieInSavedCards );
+          setSavedCards(updateSavedCards);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
   }
 
   const handleShowMovies = (searchText) => {
@@ -191,7 +204,6 @@ function App() {
           const filteredCards = filterCards(allCards, searchText);
           setSearchedCards(filteredCards);
           setShownCards(filteredCards.slice(0, numberOfInitialCards));
-          console.log(numberOfInitialCards);
           setIsMoviesCardListOpen(true);
       }
     } else if (location === '/saved-movies') {
@@ -228,6 +240,7 @@ function App() {
                 searchedCards={searchedCards}
                 shownCards={shownCards}
                 onMoreClick={handleMoreClick}
+                savedCards={savedCards}
 
                 onCardSave={handleCardSave}
               />

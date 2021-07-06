@@ -8,11 +8,11 @@ function MoviesCard(props) {
     const location = useLocation().pathname;
     const savedMovies = (location === "/saved-movies") ? true : false;
 
-    const [isCardSaved, setIsCardSaved] = useState(false);
+    const isCardSaved = props.savedCards.map(item => item.movieId).includes(props.card.id);
+    // const [isCardSaved, setIsCardSaved] = useState(false);
     const [isCardUnsaved, setIsCardUnsaved] = useState(false);
 
     const handleCardSave = () => {
-        setIsCardSaved(true);
         props.onCardSave(props.card); // прописать эту функцию
     };
 
@@ -20,10 +20,17 @@ function MoviesCard(props) {
         setIsCardUnsaved(true)
     };
 
+    // console.log( props.savedCards.map(item => item.movieId).includes(props.card.id));
     return (
         <article className={`movie ${isCardUnsaved && 'movie_usaved'}`}>
             <a href={props.card.trailerLink} className="movie__link" target="_blank" rel="noreferrer">
-                <div className="movie__img" style={{ backgroundImage: `url(${ MoviesApi.MOVIES_URL + props.card.image.url})` }} ></div>
+                { savedMovies ?
+                    (
+                        <div className="movie__img" style={{ backgroundImage: `url(${props.card.image})` }} ></div>
+                    ) : (
+                        <div className="movie__img" style={{ backgroundImage: `url(${ MoviesApi.MOVIES_URL + props.card.image.url})` }} ></div>
+                    )
+                }
             </a>
             <div className="movie__info">
                 <div className="movie__wrapper">

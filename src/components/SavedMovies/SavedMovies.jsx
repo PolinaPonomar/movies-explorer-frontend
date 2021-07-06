@@ -5,22 +5,24 @@ import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
 function SavedMovies(props) {
-    const [savedCards, setSavedCards] = useState([])
+    // const [savedCards, setSavedCards] = useState([])
 
-    useEffect( () => {
-        MainApi.getSavedMovies()
-            .then((movies) => {
-                setSavedCards(movies);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-    }, []);
+    // useEffect( () => {
+    //     MainApi.getSavedMovies()
+    //         .then((movies) => {
+    //             setSavedCards(movies);
+    //         })
+    //         .catch((err) => {
+    //             console.log(err);
+    //         })
+    // }, []);
+
+    console.log(props.savedCards);
 
     return (
         <main className="content">
             <SearchForm onShowMovies={props.onShowMovies}/>
-            <MoviesCardList cards={savedCards}/>
+            <MoviesCardList savedCards={props.savedCards}/>
             <div className="empty-place"></div>
         </main>
     );

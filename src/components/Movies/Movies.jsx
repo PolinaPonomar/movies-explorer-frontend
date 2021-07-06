@@ -4,7 +4,6 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Preloader from '../Preloader/Preloader';
 
 function Movies(props) {
-  console.log(props.searchedCards);
 
   return (
     <main className="content">
@@ -17,6 +16,7 @@ function Movies(props) {
           isOpen={props.isMoviesCardListOpen}
           shownCards={props.shownCards}
           onMoreClick={props.onMoreClick}
+          savedCards={props.savedCards}
         />
     </main>
   );
