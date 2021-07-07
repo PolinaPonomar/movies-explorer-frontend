@@ -9,7 +9,7 @@ function Movies(props) {
   // подписка на контекст информации о юзере
   const currentUser = useContext(CurrentUserContext);
   const cardsSavedCurrentUser = props.savedCards.filter(item => item.owner._id === currentUser._id);
-
+  
   return (
     <main className="content">
         <SearchForm 
