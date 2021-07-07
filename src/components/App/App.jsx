@@ -14,7 +14,7 @@ import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import NotFoundPage from '../NotFoundPage/NotFoundPage.jsx';
 import Footer from '../Footer/Footer.jsx';
-import { filterCards, defineShownCardsParameters } from '../../utils/utils';
+import { filterCards, filterCardsByCheckbox, defineShownCardsParameters } from '../../utils/utils';
 
 function App() {
   const history = useHistory();
@@ -33,6 +33,7 @@ function App() {
   const [savedCards, setSavedCards] = useState([]);
   const [searchedSavedCards, setSearchedSavedCards] = useState(savedCards);
   const [isSearchButtonPressed, setIsSearchButtonPressed] = useState(false);
+  const [isCheckboxActive, setIsCheckboxActive] = useState(false);
   // вывод карточек по нескольку вряд
   const [numberOfInitialCards, setNumberOfInitialCards] = useState(0);
   const [maxNumberOfAddedCards, setMaxNumberOfAddedCards] = useState(0);
@@ -190,7 +191,8 @@ function App() {
             const allMovies = JSON.parse(localStorage.getItem('movies'));
             setAllCards(allMovies);
             // отфильтровать запрос и отдать в MoviesCardList
-            const filteredCards = filterCards(allMovies,searchText);
+            const filteredCards = filterCards(allMovies, searchText, isCheckboxActive);
+            // const filteredCards = filterCards(allMovies, searchText);
             setSearchedCards(filteredCards);
             setShownCards(filteredCards.slice(0, numberOfInitialCards));
             setIsMoviesCardListOpen(true);
@@ -203,14 +205,16 @@ function App() {
           });
       } else {
           // отфильтровать запрос и отдать в MoviesCardList
-          const filteredCards = filterCards(allCards, searchText);
+          const filteredCards = filterCards(allCards, searchText, isCheckboxActive);
+          // const filteredCards = filterCards(allCards, searchText);
           setSearchedCards(filteredCards);
           setShownCards(filteredCards.slice(0, numberOfInitialCards));
           setIsMoviesCardListOpen(true);
       }
     } else if (location === '/saved-movies') {
         // отфильтровать запрос и отдать в MoviesCardList
-        setSearchedSavedCards(filterCards(savedCards, searchText));
+        setSearchedSavedCards(filterCards(savedCards, searchText, isCheckboxActive));
+        // setSearchedSavedCards(filterCards(savedCards, searchText));
         setIsSearchButtonPressed(true);
     }
   };
@@ -218,6 +222,18 @@ function App() {
   const handleMoreClick = () => {
     setShownCards(searchedCards.slice(0, shownCards.length + maxNumberOfAddedCards));
   };
+
+  // const handleFilterCheckboxClick = () => {
+  //   setIsCheckboxActive(!isCheckboxActive);
+  //   if (isCheckboxActive) {
+  //     if (location === '/movies') {
+  //       setSearchedCards(filterCardsByCheckbox(searchedCards));
+  //       setShownCards(filterCardsByCheckbox(shownCards));
+  //     } else if (location === '/saved-movies') {
+  //       setSearchedSavedCards(filterCardsByCheckbox(searchedSavedCards));
+  //     }
+  //   }
+  // };
 
   return (
     < CurrentUserContext.Provider value={currentUser}>
@@ -244,8 +260,10 @@ function App() {
                 shownCards={shownCards}
                 onMoreClick={handleMoreClick}
                 savedCards={savedCards}
-
                 onCardSave={handleCardSave}
+                isCheckboxActive={isCheckboxActive}
+                setIsCheckboxActive={setIsCheckboxActive}
+                // onFilterCheckboxClick={handleFilterCheckboxClick}
               />
               <ProtectedRoute
                 path="/saved-movies"
@@ -256,6 +274,9 @@ function App() {
                 onCardUnsave={handleCardUnsave}
                 searchedSavedCards={searchedSavedCards}
                 isSearchButtonPressed={isSearchButtonPressed}
+                isCheckboxActive={isCheckboxActive}
+                setIsCheckboxActive={setIsCheckboxActive}
+                // onFilterCheckboxClick={handleFilterCheckboxClick}
               />
               <ProtectedRoute
                 path="/profile"

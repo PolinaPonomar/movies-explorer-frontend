@@ -40,7 +40,13 @@ function SearchForm(props) {
                     <button type="submit" className="search__button"></button>
                 </div>
                 <span id="text-input-error" className={`search__input-error ${!isFormValid && 'search__input-error_active'}`}>{error}</span>
-                <FilterCheckbox/>
+                <FilterCheckbox 
+                    isCheckboxActive={props.isCheckboxActive}
+                    setIsCheckboxActive={props.setIsCheckboxActive}
+                    // onShowMovies={props.onShowMovies}
+                    // searchText={searchText}
+                    // onFilterCheckboxClick={props.onFilterCheckboxClick}
+                />
             </form>
         </section>
     );

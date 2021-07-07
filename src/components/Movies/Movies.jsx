@@ -12,7 +12,12 @@ function Movies(props) {
 
   return (
     <main className="content">
-        <SearchForm onShowMovies={props.onShowMovies}/>
+        <SearchForm 
+          onShowMovies={props.onShowMovies}
+          isCheckboxActive={props.isCheckboxActive}
+          setIsCheckboxActive={props.setIsCheckboxActive}
+          // onFilterCheckboxClick={props.onFilterCheckboxClick}
+        />
         <Preloader isOpen={props.isPreloaderOpen}/>
         <MoviesCardList 
           isServerError={props.isServerError}

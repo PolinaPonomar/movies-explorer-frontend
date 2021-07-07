@@ -12,7 +12,12 @@ function SavedMovies(props) {
 
     return (
         <main className="content">
-            <SearchForm onShowMovies={props.onShowMovies}/>
+            <SearchForm 
+                onShowMovies={props.onShowMovies} 
+                isCheckboxActive={props.isCheckboxActive}
+                setIsCheckboxActive={props.setIsCheckboxActive}
+                // onFilterCheckboxClick={props.onFilterCheckboxClick}
+            />
             <MoviesCardList 
                 savedCards={cardsSavedCurrentUser}
                 onCardUnsave={props.onCardUnsave}
