@@ -82,13 +82,16 @@ function App() {
   }, []);
 
   useEffect( () => {
-    MainApi.getSavedMovies()
-      .then((movies) => {
-          setSavedCards(movies);
-      })
-      .catch((err) => {
-          console.log(err);
-      });
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      MainApi.getSavedMovies()
+        .then((movies) => {
+            setSavedCards(movies);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    }
   }, []);
 
   const handleRegister = (inputs) => {
