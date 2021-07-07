@@ -14,9 +14,7 @@ function Movies(props) {
     <main className="content">
         <SearchForm 
           onShowMovies={props.onShowMovies}
-          isCheckboxActive={props.isCheckboxActive}
-          setIsCheckboxActive={props.setIsCheckboxActive}
-          // onFilterCheckboxClick={props.onFilterCheckboxClick}
+          onFilterCheckboxClick={props.onFilterCheckboxClick}
         />
         <Preloader isOpen={props.isPreloaderOpen}/>
         <MoviesCardList 

@@ -41,11 +41,7 @@ function SearchForm(props) {
                 </div>
                 <span id="text-input-error" className={`search__input-error ${!isFormValid && 'search__input-error_active'}`}>{error}</span>
                 <FilterCheckbox 
-                    isCheckboxActive={props.isCheckboxActive}
-                    setIsCheckboxActive={props.setIsCheckboxActive}
-                    // onShowMovies={props.onShowMovies}
-                    // searchText={searchText}
-                    // onFilterCheckboxClick={props.onFilterCheckboxClick}
+                    onFilterCheckboxClick={props.onFilterCheckboxClick}
                 />
             </form>
         </section>

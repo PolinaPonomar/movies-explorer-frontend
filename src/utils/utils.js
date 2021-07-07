@@ -39,4 +39,4 @@ const defineShownCardsParameters = (pageWidth) => {
       }
 };
 
-export { projectInternalPagesList, minutesIntoHoursConversion, filterCards, filterCardsByCheckbox, defineShownCardsParameters };
+export { projectInternalPagesList, minutesIntoHoursConversion, filterCards, filterCardsByText, filterCardsByCheckbox, defineShownCardsParameters };

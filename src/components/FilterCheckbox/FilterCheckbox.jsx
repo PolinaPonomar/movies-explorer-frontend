@@ -2,12 +2,9 @@ import './FilterCheckbox.css';
 
 function FilterCheckbox(props) {
     const handleFilterCheckboxClick = () => {
-        props.setIsCheckboxActive(!props.isCheckboxActive);
-        // props.onFilterCheckboxClick();
-        // props.onShowMovies(props.searchText);
+        props.onFilterCheckboxClick();
+        
     }
-
-    // console.log(props.searchText);
 
     return (
         <div className="filter">
