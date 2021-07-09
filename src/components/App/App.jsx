@@ -99,8 +99,7 @@ function App() {
         setSearchedCards(filteredCards);
         setShownCards(filteredCards.slice(0, shownCardsParameters.numOfInitialCards));
         setIsMoviesCardListOpen(true);
-        // searchText
-        // проверить, короткометражки ли это все
+        // проверить, короткометражки ли это
         if ( filteredCards.length === filterCardsByCheckbox(filteredCards).length) {
           setIsCheckboxActive(true);
           setOldSearchedCards(JSON.parse(localStorage.getItem('oldFilteredMovies')));
@@ -179,7 +178,8 @@ function App() {
   }
 
   const handleCardSave = (movie) => {
-    const isCardSaved = savedCards.map(item => item.movieId).includes(movie.id);
+    const cardsSavedCurrentUser = savedCards.filter(item => item.owner._id === currentUser._id);
+    const isCardSaved = cardsSavedCurrentUser.map(item => item.movieId).includes(movie.id);
     if (!isCardSaved) {
       MainApi.saveMovie(movie)
         .then((movieCard) => {
@@ -189,7 +189,7 @@ function App() {
           console.log(err);
         })
     } else {
-      const thisMovieInSavedCards = savedCards.find(item => item.movieId === movie.id);
+      const thisMovieInSavedCards = cardsSavedCurrentUser.find(item => item.movieId === movie.id);
       handleCardUnsave(thisMovieInSavedCards);
     }
   }
@@ -324,6 +324,7 @@ function App() {
                 onCardSave={handleCardSave}
                 onFilterCheckboxClick={handleFilterCheckboxClick}
                 isCheckboxActive={isCheckboxActive}
+                setSavedCards={setSavedCards}
               />
               <ProtectedRoute
                 path="/saved-movies"
@@ -335,6 +336,7 @@ function App() {
                 searchedSavedCards={searchedSavedCards}
                 isSearchButtonPressed={isSearchButtonPressed}
                 onFilterCheckboxClick={handleFilterCheckboxSavedMoviesClick}
+                setSavedCards={setSavedCards}
               />
               <ProtectedRoute
                 path="/profile"
