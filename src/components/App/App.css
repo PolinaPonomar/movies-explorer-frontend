@@ -133,6 +133,13 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 900px) {
+    /* блок content  */
+    .content {
+        width: calc(100% - 2*(30px));
+    }
+}
+
 @media screen and (max-width: 768px) {
     /* блок account-button */
     .account-button {

@@ -1,12 +1,41 @@
+import { useLocation } from 'react-router-dom';
 import './FilterCheckbox.css';
 
-function FilterCheckbox() {
+function FilterCheckbox(props) {
+    const location = useLocation().pathname;
+    const savedMovies = (location === "/saved-movies") ? true : false;
+
+    const handleFilterCheckboxClick = () => {
+        props.onFilterCheckboxClick();
+        
+    }
+
     return (
-        <div className="filter">
-            <input type="checkbox" className="filter__checkbox" name="short-films" id="short-films"></input>
-            <label className="filter__lable" htmlFor="short-films"></label>
-            <p className="filter__text">Короткометражки</p>
-        </div>
+        <>
+        { savedMovies ?
+            (
+                <div className="filter">
+                    <input type="checkbox" className="filter__checkbox" name="short-films" id="short-films" onChange={handleFilterCheckboxClick}></input>
+                    <label className="filter__lable" htmlFor="short-films"></label>
+                    <p className="filter__text">Короткометражки</p>
+                </div>
+
+            ) : (
+                <div className="filter">
+                    <input 
+                        type="checkbox" 
+                        className="filter__checkbox" 
+                        name="short-films" 
+                        id="short-films" 
+                        onChange={handleFilterCheckboxClick}
+                        checked={props.isCheckboxActive}>
+                    </input>
+                    <label className="filter__lable" htmlFor="short-films"></label>
+                    <p className="filter__text">Короткометражки</p>
+                </div>
+            )
+        }
+        </>
     );
 }
 

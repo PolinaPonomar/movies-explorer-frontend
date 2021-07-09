@@ -11,15 +11,15 @@
 
 .form__group {
     width: 100%;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
 }
 
-.form__group_visible {
+/* .form__group_visible {
     display: flex;
-}
+} */
 
 .form__input {
     margin: 0 0 24px;
@@ -76,6 +76,14 @@
     color: #A0A0A0;
 }
 
+.form__submit-error {
+    margin: 0 0 14px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+}
+
 .form__submit-button {
     padding: 13px 0 15px;
     border: 0;
@@ -94,11 +102,25 @@
     cursor: pointer;
 }
 
+.form__submit-button_disabled {
+    opacity: 0.6;
+}
+
+.form__submit-button_disabled:hover {
+    opacity: 0.6;
+    cursor:auto;
+}
+
 @media screen and (max-width: 480px) {
     .form__wrapper {
         min-height: 423px;
     }
 
+    .form__submit-error {
+        margin: 0 0 12px;
+        font-size: 12px;
+        line-height: 15px;
+    }
     .form__submit-button {
         padding: 15px 0 15px;
         font-size: 12px;

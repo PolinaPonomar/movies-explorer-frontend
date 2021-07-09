@@ -1,127 +1,58 @@
-import imgOne from '../images/img-1.jpg';
-import imgTwo from '../images/img-2.jpg';
-import imgThree from '../images/img-3.jpg';
-import imgFour from '../images/img-4.jpg';
-import imgFive from '../images/img-5.jpg';
-import imgSix from '../images/img-6.jpg';
-import imgSeven from '../images/img-7.jpg';
-import imgEight from '../images/img-8.jpg';
-import imgNine from '../images/img-9.jpg';
-import imgTen from '../images/img-10.jpg';
-import imgEleven from '../images/img-11.jpg';
-import imgTwelve from '../images/img-12.jpg';
+const projectInternalPagesList = ["/movies", "/saved-movies"];
+const DURATION_SHORT_MOVIES = 40;
+const NUM_OF_INITIAL_CARDS_PAGE_WIDTH_1280 = 12;
+const NUM_OF_INITIAL_CARDS_PAGE_WIDTH_768 = 8;
+const NUM_OF_INITIAL_CARDS_PAGE_WIDTH_480 = 5;
+const NUM_OF_ADDED_CARDS_PAGE_WIDTH_1280 = 3;
+const NUM_OF_ADDED_CARDS_PAGE_WIDTH_768 = 2;
+const NUM_OF_ADDED_CARDS_PAGE_WIDTH_480 = 1;
 
-const projectInternalPagesList = ["/movies", "/saved-movies"]; 
+const minutesIntoHoursConversion = (minutes) => {
+    if (Number(minutes) >= 60) {
+      if (Number(minutes)%60 === 0) {
+        return String(Math.trunc(Number(minutes)/60)) + 'ч';
+      }
+      return String(Math.trunc(Number(minutes)/60)) + 'ч '+ String(Number(minutes)%60) + 'м';
+    } 
+    return minutes + 'м';
+};
 
-const cards = [
-    {   
-        _id: 1,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgOne ,
-        name: '33 слова о дизайне',
-        duration: '1ч 47м',
-    },
-    {
-        _id: 2,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgTwo,
-        name: 'Киноальманах «100 лет дизайна»',
-        duration: '1ч 3м',
-    },
-    {
-        _id: 3,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgThree,
-        name: 'В погоне за Бенкси',
-        duration: '1ч 42м',
-    },
-    {
-        _id: 4,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgFour,
-        name: 'Баския: Взрыв реальности',
-        duration: '1ч 21м',
-    },
-    {
-        _id: 5,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgFive,
-        name: 'Бег это свобода',
-        duration: '1ч 44м',
-    },
-    {
-        _id: 6,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgSix,
-        name: 'Книготорговцы',
-        duration: '1ч 37м',
-    },
-    {
-        _id: 7,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgSeven,
-        name: 'Когда я думаю о Германии ночью',
-        duration: '1ч 56м',
-    },
-    {
-        _id: 8,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgEight,
-        name: 'Gimme Danger: История Игги и The Stooge...',
-        duration: '1ч 59м',
-    },
-    {
-        _id: 9,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgNine,
-        name: 'Дженис: Маленькая девочка грустит',
-        duration: '1ч 42м',
-    },
-    {
-        _id: 10,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgTen,
-        name: 'Соберись перед прыжком',
-        duration: '1ч 10м',
-    },
-    {
-        _id: 11,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgEleven,
-        name: 'Пи Джей Харви: A dog called money',
-        duration: '1ч 4м',
-    },
-    {
-        _id: 12,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgTwelve,
-        name: 'По волнам: Искусство звука в кино',
-        duration: '1ч 7м',
-    },
-]
+const filterCards = (movies, searchText, isCheckboxActive) => {
+  if (isCheckboxActive) {
+    const filteredByCheckboxMovies = filterCardsByCheckbox(movies);
+    return filterCardsByText(filteredByCheckboxMovies, searchText)
+  } else {
+    return filterCardsByText(movies, searchText)
+  }
+};
 
-const savedCards = [
-    {   
-        _id: 1,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgOne ,
-        name: '33 слова о дизайне',
-        duration: '1ч 47м',
-    },
-    {
-        _id: 2,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgTwo,
-        name: 'Киноальманах «100 лет дизайна»',
-        duration: '1ч 3м',
-    },
-    {
-        _id: 3,
-        link: 'https://www.youtube.com/watch?v=UXcqcdYABFw',
-        img: imgThree,
-        name: 'В погоне за Бенкси',
-        duration: '1ч 42м',
-    },
-]
+const filterCardsByText = (movies, searchText) => {
+    return movies.filter(item => 
+      (item.nameRU !== null && item.nameRU.toLowerCase().includes(searchText.toLowerCase())) ||
+      (item.nameEN !== null && item.nameEN.toLowerCase().includes(searchText.toLowerCase()))  )
+};
 
-export { cards, savedCards, projectInternalPagesList};
+const filterCardsByCheckbox = (movies) => {
+    return movies.filter(item => item.duration <= DURATION_SHORT_MOVIES)
+};
+
+const defineShownCardsParameters = (pageWidth) => {
+    if (pageWidth >= 1280) {
+        return {
+          numOfInitialCards: NUM_OF_INITIAL_CARDS_PAGE_WIDTH_1280,
+          maxNumOfAddedCards: NUM_OF_ADDED_CARDS_PAGE_WIDTH_1280
+        }
+      } else if (pageWidth >= 768) {
+        return {
+          numOfInitialCards: NUM_OF_INITIAL_CARDS_PAGE_WIDTH_768,
+          maxNumOfAddedCards: NUM_OF_ADDED_CARDS_PAGE_WIDTH_768
+        }
+      } else {
+        return {
+          numOfInitialCards: NUM_OF_INITIAL_CARDS_PAGE_WIDTH_480,
+          maxNumOfAddedCards: NUM_OF_ADDED_CARDS_PAGE_WIDTH_480
+        }
+      }
+};
+
+export { projectInternalPagesList, minutesIntoHoursConversion, filterCards, filterCardsByText, filterCardsByCheckbox, defineShownCardsParameters };
