@@ -34,7 +34,7 @@ function SearchForm(props) {
                         value={searchText}
                         onChange={handleChange}
                         type="text" 
-                        placeholder="Фильм" 
+                        placeholder="Фильм"
                         required
                     />
                     <button type="submit" className="search__button"></button>
@@ -42,6 +42,7 @@ function SearchForm(props) {
                 <span id="text-input-error" className={`search__input-error ${!isFormValid && 'search__input-error_active'}`}>{error}</span>
                 <FilterCheckbox 
                     onFilterCheckboxClick={props.onFilterCheckboxClick}
+                    isCheckboxActive={props.isCheckboxActive}
                 />
             </form>
         </section>

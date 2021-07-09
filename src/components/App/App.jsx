@@ -40,6 +40,7 @@ function App() {
   const [isSearchButtonPressed, setIsSearchButtonPressed] = useState(false);
   // для короткометражек
   const [isCheckboxActive, setIsCheckboxActive] = useState(false);
+  const [isCheckboxSavedMoviesActive, setIsCheckboxSavedMoviesActive] = useState(false);
   const [oldSearchedCards, setOldSearchedCards] = useState(searchedCards);
   const [oldSearchedSavedCards, setOldSearchedSavedCards] = useState(searchedSavedCards);
   // вывод карточек по нескольку вряд
@@ -54,7 +55,7 @@ function App() {
     setIsNavMenuOpen(false);
   };
 
-  const setShownCardsParameters = () => {
+  function setShownCardsParameters () {
     const pageWidth = window.innerWidth;
     const shownCardsParameters = defineShownCardsParameters(pageWidth);
     setNumberOfInitialCards(shownCardsParameters.numOfInitialCards);
@@ -91,7 +92,23 @@ function App() {
         .catch((err) => {
             console.log(err);
         });
+    // при рендере отображать ранее найденные и отфильтрованные фильмы
+      if (localStorage.getItem('filteredMovies')) {
+        const shownCardsParameters = defineShownCardsParameters(window.innerWidth);
+        const filteredCards = JSON.parse(localStorage.getItem('filteredMovies'));
+        setSearchedCards(filteredCards);
+        setShownCards(filteredCards.slice(0, shownCardsParameters.numOfInitialCards));
+        setIsMoviesCardListOpen(true);
+        // searchText
+        // проверить, короткометражки ли это все
+        if ( filteredCards.length === filterCardsByCheckbox(filteredCards).length) {
+          setIsCheckboxActive(true);
+          setOldSearchedCards(JSON.parse(localStorage.getItem('oldFilteredMovies')));
+        }
+      }
+
     }
+      
   }, []);
 
   const handleRegister = (inputs) => {
@@ -200,15 +217,16 @@ function App() {
             localStorage.setItem('movies', JSON.stringify(movies));
             const allMovies = JSON.parse(localStorage.getItem('movies'));
             setAllCards(allMovies);
-
             // подготовить то, что будем показывать при отмене фильтра по короткометражкам
             setOldSearchedCards(filterCardsByText(allMovies, searchText));
+            localStorage.setItem('oldFilteredMovies', JSON.stringify(filterCardsByText(allMovies, searchText)));
             // отфильтровать запрос и отдать в MoviesCardList
             const filteredCards = filterCards(allMovies, searchText, isCheckboxActive);
             setSearchedCards(filteredCards);
             setShownCards(filteredCards.slice(0, numberOfInitialCards));
             setIsMoviesCardListOpen(true);
-
+            // чтобы при рендере отображать ранее найденные и отфильтрованные фильмы
+              localStorage.setItem('filteredMovies', JSON.stringify(filteredCards));
           })
           .catch((err) => {
             setIsPreloaderOpen(false);
@@ -219,18 +237,21 @@ function App() {
       } else {
           // подготовить то, что будем показывать при отмене фильтра по короткометражкам
           setOldSearchedCards(filterCardsByText(allCards, searchText));
+          localStorage.setItem('oldFilteredMovies', JSON.stringify(filterCardsByText(allCards, searchText)));
           // отфильтровать запрос и отдать в MoviesCardList
           const filteredCards = filterCards(allCards, searchText, isCheckboxActive);
           setSearchedCards(filteredCards);
           setShownCards(filteredCards.slice(0, numberOfInitialCards));
           setIsMoviesCardListOpen(true);
+          // чтобы при рендере отображать ранее найденные и отфильтрованные фильмы
+          localStorage.setItem('filteredMovies', JSON.stringify(filteredCards));
 
       }
     } else if (location === '/saved-movies') {
         // подготовить то, что будем показывать при отмене фильтра по короткометражкам
         setOldSearchedSavedCards(filterCardsByText(savedCards, searchText));
         // отфильтровать запрос и отдать в MoviesCardList
-        const filteredCards = filterCards(savedCards, searchText, isCheckboxActive);
+        const filteredCards = filterCards(savedCards, searchText, isCheckboxSavedMoviesActive);
         setSearchedSavedCards(filteredCards);
         setIsSearchButtonPressed(true);
     }
@@ -240,30 +261,38 @@ function App() {
     setShownCards(searchedCards.slice(0, shownCards.length + maxNumberOfAddedCards));
   };
 
+  // функция, регулирующая работу чекбокса на странице movies
   const handleFilterCheckboxClick = () => {
     setIsCheckboxActive(!isCheckboxActive);
     if (!isCheckboxActive) {
-      if (location === '/movies') {
-        // подготовить то, что будем показывать при отмене фильтра по короткометражкам
-        setOldSearchedCards(searchedCards);
-        // отфильтровать запрос и отдать в MoviesCardList
-        const shortFilms= filterCardsByCheckbox(searchedCards);
-        setSearchedCards(shortFilms);
-        setShownCards(shortFilms.slice(0, numberOfInitialCards));
-      } else if (location === '/saved-movies') {
-        // подготовить то, что будем показывать при отмене фильтра по короткометражкам
-          setOldSearchedSavedCards(searchedSavedCards);
-          // отфильтровать запрос и отдать в MoviesCardList
-          const shortFilms= filterCardsByCheckbox(searchedSavedCards);
-          setSearchedSavedCards(shortFilms);
-      }
+      // подготовить то, что будем показывать при отмене фильтра по короткометражкам
+      setOldSearchedCards(searchedCards);
+      localStorage.setItem('oldFilteredMovies', JSON.stringify(searchedCards));
+      // отфильтровать запрос и отдать в MoviesCardList
+      const shortFilms= filterCardsByCheckbox(searchedCards);
+      setSearchedCards(shortFilms);
+      setShownCards(shortFilms.slice(0, numberOfInitialCards));
+      // чтобы при рендере отображать ранее найденные и отфильтрованные фильмы
+      localStorage.setItem('filteredMovies', JSON.stringify(shortFilms));
     } else {
-      if (location === '/movies') {
-        setSearchedCards(oldSearchedCards);
-        setShownCards(oldSearchedCards.slice(0, numberOfInitialCards));
-      } else if (location === '/saved-movies') {
-          setSearchedSavedCards(oldSearchedSavedCards);
-      }
+      setSearchedCards(oldSearchedCards);
+      setShownCards(oldSearchedCards.slice(0, numberOfInitialCards));
+      // чтобы при рендере отображать ранее найденные и отфильтрованные фильмы
+      localStorage.setItem('filteredMovies', JSON.stringify(oldSearchedCards));
+    } 
+  };
+
+  // функция, регулирующая работу чекбокса на странице saved-movies
+  const handleFilterCheckboxSavedMoviesClick = () => {
+    setIsCheckboxSavedMoviesActive(!isCheckboxSavedMoviesActive);
+    if (!isCheckboxSavedMoviesActive) {
+      // подготовить то, что будем показывать при отмене фильтра по короткометражкам
+      setOldSearchedSavedCards(searchedSavedCards);
+      // отфильтровать запрос и отдать в MoviesCardList
+      const shortFilms= filterCardsByCheckbox(searchedSavedCards);
+      setSearchedSavedCards(shortFilms);
+    } else {
+        setSearchedSavedCards(oldSearchedSavedCards);
     } 
   };
 
@@ -294,6 +323,7 @@ function App() {
                 savedCards={savedCards}
                 onCardSave={handleCardSave}
                 onFilterCheckboxClick={handleFilterCheckboxClick}
+                isCheckboxActive={isCheckboxActive}
               />
               <ProtectedRoute
                 path="/saved-movies"
@@ -304,7 +334,7 @@ function App() {
                 onCardUnsave={handleCardUnsave}
                 searchedSavedCards={searchedSavedCards}
                 isSearchButtonPressed={isSearchButtonPressed}
-                onFilterCheckboxClick={handleFilterCheckboxClick}
+                onFilterCheckboxClick={handleFilterCheckboxSavedMoviesClick}
               />
               <ProtectedRoute
                 path="/profile"

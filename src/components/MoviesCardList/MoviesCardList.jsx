@@ -5,13 +5,15 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 function MoviesCardList(props) {
     const location = useLocation().pathname;
     const savedMovies = (location === "/saved-movies") ? true : false;
+
+    console.log();
     
     return (
         <>
         { savedMovies ?
             (
                 <section className="movies movies_opened" style={{ paddingBottom: "107px" }} >
-                    <p className={`movies__not-found-text`}>Ничего не найдено</p>
+                    <p className="movies__not-found-text">Ничего не найдено</p>
                     <div className="movies__grid movies__grid_opened">
                         { props.isSearchButtonPressed ?
                             (props.searchedSavedCards.map(item => 
