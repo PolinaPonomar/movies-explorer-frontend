@@ -159,6 +159,8 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('movies');
+    localStorage.removeItem('filteredMovies');
+    localStorage.removeItem('oldFilteredMovies');
     setShownCards([]);
     setIsMoviesCardListOpen(false);
     setLoggedIn(false);
