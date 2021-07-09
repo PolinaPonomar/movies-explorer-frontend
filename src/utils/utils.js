@@ -1,4 +1,11 @@
-const projectInternalPagesList = ["/movies", "/saved-movies"]; 
+const projectInternalPagesList = ["/movies", "/saved-movies"];
+const DURATION_SHORT_MOVIES = 40;
+const NUM_OF_INITIAL_CARDS_PAGE_WIDTH_1280 = 12;
+const NUM_OF_INITIAL_CARDS_PAGE_WIDTH_768 = 8;
+const NUM_OF_INITIAL_CARDS_PAGE_WIDTH_480 = 5;
+const NUM_OF_ADDED_CARDS_PAGE_WIDTH_1280 = 3;
+const NUM_OF_ADDED_CARDS_PAGE_WIDTH_768 = 2;
+const NUM_OF_ADDED_CARDS_PAGE_WIDTH_480 = 1;
 
 const minutesIntoHoursConversion = (minutes) => {
     if (Number(minutes) >= 60) {
@@ -26,16 +33,25 @@ const filterCardsByText = (movies, searchText) => {
 };
 
 const filterCardsByCheckbox = (movies) => {
-    return movies.filter(item => item.duration <= 40)
+    return movies.filter(item => item.duration <= DURATION_SHORT_MOVIES)
 };
 
 const defineShownCardsParameters = (pageWidth) => {
     if (pageWidth >= 1280) {
-        return {numOfInitialCards: 12,maxNumOfAddedCards: 3}
+        return {
+          numOfInitialCards: NUM_OF_INITIAL_CARDS_PAGE_WIDTH_1280,
+          maxNumOfAddedCards: NUM_OF_ADDED_CARDS_PAGE_WIDTH_1280
+        }
       } else if (pageWidth >= 768) {
-        return {numOfInitialCards: 8,maxNumOfAddedCards: 2}
+        return {
+          numOfInitialCards: NUM_OF_INITIAL_CARDS_PAGE_WIDTH_768,
+          maxNumOfAddedCards: NUM_OF_ADDED_CARDS_PAGE_WIDTH_768
+        }
       } else {
-        return {numOfInitialCards: 5,maxNumOfAddedCards: 1}
+        return {
+          numOfInitialCards: NUM_OF_INITIAL_CARDS_PAGE_WIDTH_480,
+          maxNumOfAddedCards: NUM_OF_ADDED_CARDS_PAGE_WIDTH_480
+        }
       }
 };
 
