@@ -35,12 +35,12 @@ function Footer () {
                         </li>
                         <li className="contacts__item contacts__item_type_footer">
                             <a 
-                                href="https://www.facebook.com/" 
+                                href="https://t.me/polina_ponomareva1" 
                                 className="contacts__link contacts__link_type_footer" 
                                 target="_blank" 
                                 rel="noreferrer"
                             >
-                                Facebook
+                                Telegram
                             </a>
                         </li>
                     </ul>
